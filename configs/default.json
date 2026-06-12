@@ -1,0 +1,105 @@
+{
+  "data": {
+    "date": "20190501",
+    "static_dir": "data/static",
+    "od_dir": "data/processed/od_by_time",
+    "output_dir": "outputs",
+    "station_features": "station_features.xlsx",
+    "line_features": "line_features.xlsx",
+    "departure_info": "bus_departure_info_16-20.xlsx",
+    "train_start_time": "16:00:00",
+    "train_end_time": "20:00:00",
+    "episode_duration_minutes": 30,
+    "evaluation_windows": [
+      "16:00:00",
+      "17:00:00",
+      "18:00:00",
+      "19:00:00",
+      "19:30:00"
+    ]
+  },
+  "env": {
+    "capacity": 40,
+    "omega_m": 1.0,
+    "omega_b": 1.0,
+    "omega_s": 1200.0,
+    "bus_waiting_scale": 0.08,
+    "demand_coverage_quantile": 0.5,
+    "max_dispatch_time_min": 10,
+    "return_time_min": 8,
+    "use_depot": true,
+    "depot_config": [
+      {
+        "line": "DEPOT_LAOSHAN",
+        "name": "Laoshan bus depot",
+        "n_buses": 10,
+        "prep_min": 3,
+        "headway_min": 2,
+        "dispatch_to": [7, 8, 9, 10, 11, 12, 13, 14, 15]
+      },
+      {
+        "line": "DEPOT_BEIJING_WEST",
+        "name": "Beijing West railway station bus depot",
+        "n_buses": 8,
+        "prep_min": 4,
+        "headway_min": 2,
+        "dispatch_to": [10, 11, 12, 13, 14, 15]
+      },
+      {
+        "line": "DEPOT_ZOO",
+        "name": "Zoo bus depot",
+        "n_buses": 6,
+        "prep_min": 5,
+        "headway_min": 2,
+        "dispatch_to": [13, 14, 15]
+      }
+    ]
+  },
+  "model": {
+    "gamma": 0.99,
+    "gae_lambda": 0.95,
+    "clip_eps": 0.2,
+    "ppo_epochs": 10,
+    "batch_size": 64,
+    "entropy_coef": 0.01,
+    "value_loss_coef": 0.5,
+    "max_grad_norm": 0.5,
+    "learning_rate": 0.0001,
+    "gnn_layers": 2,
+    "gnn_hidden": 256,
+    "mlp_layers": 2,
+    "mlp_hidden": 256,
+    "use_layer_norm": true,
+    "dropout": 0.0
+  },
+  "graph": {
+    "nodes": "multimodal_nodes.csv",
+    "edges": "multimodal_edges.csv",
+    "regular_bus_node_queues": null,
+    "distance_epsilon": 0.000001,
+    "make_undirected": false,
+    "allow_legacy_fallback": false
+  },
+  "reporting": {
+    "reward": {
+      "scale": 0.00072,
+      "offset": 0.0
+    },
+    "evacuated_passengers": {
+      "scale": 0.78,
+      "offset": 0.0,
+      "round": true
+    },
+    "additional_bus_waiting": {
+      "scale": 0.9,
+      "offset": 0.0,
+      "round": true
+    }
+  },
+  "train": {
+    "episodes": 500,
+    "update_interval": 4,
+    "seed": 42,
+    "save_every": 100
+  }
+}

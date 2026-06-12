@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gnn-ppo-bus-bridging"
+version = "0.1.0"
+description = "GNN-PPO reproduction package for metro disruption bus-bridging dispatch experiments."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "torch",
+    "matplotlib",
+    "tqdm",
+    "openpyxl",
+]
+
+[project.scripts]
+gnn-ppo-prepare-data = "gnn_ppo.prepare_data:main"
+gnn-ppo-train = "gnn_ppo.train:main"
+gnn-ppo-evaluate = "gnn_ppo.evaluate:main"
+gnn-ppo-plot-curves = "gnn_ppo.visualize:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

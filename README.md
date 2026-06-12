@@ -117,26 +117,3 @@ Evaluation outputs are written to:
 outputs/<run-name>/evaluation/
 ```
 
-Key files include:
-
-- `evaluation_summary.csv`
-- `actions_HHMMSS.csv`
-- `config_used_evaluation.json`
-
-`evaluation_summary.csv` is the main inference summary table.
-
-## Configuration
-
-Default settings are in:
-
-```text
-configs/default.json
-```
-
-Important fields include:
-
-- `data`: OD date, static data paths, output directory, episode duration, and evaluation windows.
-- `env`: capacity, reward weights, depot settings, dispatch-time threshold, and demand-coverage filtering.
-- `graph`: paper-aligned multimodal graph inputs.
-- `model`: PPO and GNN hyperparameters.
-- `train`: training episodes, update interval, and random seed.
